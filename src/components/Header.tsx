@@ -9,7 +9,7 @@ interface HeaderProps {
 }
 
 export function Header({ tasksCounter = 0 }: HeaderProps) {
-  const tasksCounterText = tasksCounter === 1 || tasksCounter === 0 
+  const tasksCounterText = tasksCounter === 1 
     ? 'tarefa' 
     : 'tarefas';
   
