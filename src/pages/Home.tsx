@@ -10,6 +10,16 @@ export function Home() {
 
   function handleAddTask(newTaskTitle: string) {
     //TODO - add new task
+    const isTitleExists = tasks.find(task => task.title === newTaskTitle);
+
+    if (isTitleExists) {
+      Alert.alert(
+        `Atenção ⚠!`,
+        'Notamos que você já tem adicionado essa tarefa, por favor adicione uma nova'
+      );
+      return;
+    }
+
     const data = { 
       id: new Date().getTime(),
       title: newTaskTitle,
@@ -35,9 +45,26 @@ export function Home() {
 
   function handleRemoveTask(id: number) {
     //TODO - remove task from state
-    setTasks(oldState => oldState.filter(
-      task => task.id !== id,
-    ));
+    Alert.alert(
+      "Remoção de Tarefa",
+      "Você realmente deseja excluir essa tarefa?",
+      [
+        {
+          text: "Não",
+          onPress: () => {},
+          style: "cancel"
+        },
+        {
+          text: "Sim, desejo!",
+          onPress: () => {
+            setTasks(oldState => oldState.filter(
+              task => task.id !== id,
+            ));
+          },
+          style: "default"
+        }
+      ]
+    )
   }
 
   return (
